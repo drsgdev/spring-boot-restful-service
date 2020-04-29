@@ -1,11 +1,10 @@
 package com.github.drsgdev.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
@@ -24,4 +23,14 @@ public class Facts {
   int amnt;
 
   @NotNull int cost;
+
+  public Facts(String date, @NotNull int retailer, @NotNull int cust, int book,
+               int amnt, @NotNull int cost) {
+    this.date = date;
+    this.retailer = retailer;
+    this.cust = cust;
+    this.book = book;
+    this.amnt = amnt;
+    this.cost = cost;
+  }
 }
