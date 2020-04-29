@@ -3,34 +3,27 @@ package com.github.drsgdev.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import lombok.Data;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Data
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
 public class Facts {
 
-  @Id @GeneratedValue int oid;
+  @Id @GeneratedValue private int oid;
 
-  @DateTimeFormat String date;
+  @DateTimeFormat private String date;
 
-  @NotNull int retailer;
+  private int retailer;
 
-  @NotNull int cust;
+  private int cust;
 
   int book;
   int amnt;
 
-  @NotNull int cost;
-
-  public Facts(String date, @NotNull int retailer, @NotNull int cust, int book,
-               int amnt, @NotNull int cost) {
-    this.date = date;
-    this.retailer = retailer;
-    this.cust = cust;
-    this.book = book;
-    this.amnt = amnt;
-    this.cost = cost;
-  }
+  private int cost;
 }

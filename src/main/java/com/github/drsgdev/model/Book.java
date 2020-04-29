@@ -6,27 +6,22 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.Data;
 
-@Data
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
 public class Book {
 
-  @Id @GeneratedValue int id;
+  @Id @GeneratedValue private int id;
 
-  @NotEmpty @Size(max = 30, min = 1) String title;
+  @NotEmpty @Size(max = 30, min = 1) private String title;
 
-  @NotNull int cost;
+  @NotNull private int cost;
 
-  @Size(max = 50) String warehouse;
+  @Size(max = 50) private String warehouse;
 
-  int amnt;
-
-  public Book(@NotEmpty @Size(max = 30, min = 1) String title,
-              @NotNull int cost, @Size(max = 50) String warehouse, int amnt) {
-    this.title = title;
-    this.cost = cost;
-    this.warehouse = warehouse;
-    this.amnt = amnt;
-  }
+  private int amnt;
 }

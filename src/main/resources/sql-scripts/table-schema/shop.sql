@@ -1,8 +1,8 @@
--- Table: spring.shop
+-- Table: public.shop
 
--- DROP TABLE spring.shop;
+-- DROP TABLE public.shop;
 
-CREATE TABLE spring.shop
+CREATE TABLE public.shop
 (
     id integer NOT NULL,
     name character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -15,5 +15,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE spring.shop
+ALTER TABLE public.shop
     OWNER to postgres;

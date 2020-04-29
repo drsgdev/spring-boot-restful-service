@@ -1,8 +1,8 @@
--- Table: spring.book
+-- Table: public.book
 
--- DROP TABLE spring.book;
+-- DROP TABLE public.book;
 
-CREATE TABLE spring.book
+CREATE TABLE public.book
 (
     id integer NOT NULL,
     title character varying(30) COLLATE pg_catalog."default" NOT NULL,
@@ -16,5 +16,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE spring.book
+ALTER TABLE public.book
     OWNER to postgres;

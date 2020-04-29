@@ -1,10 +1,12 @@
 package com.github.drsgdev.repository;
 
-import com.github.drsgdev.model.Facts;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
 
-public interface FactsRepository extends CrudRepository<Facts, Integer> {
+import com.github.drsgdev.model.Facts;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FactsRepository extends JpaRepository<Facts, Integer> {
 
   List<Facts> findAll();
 }

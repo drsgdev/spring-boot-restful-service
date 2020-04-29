@@ -1,8 +1,8 @@
--- Table: spring.facts
+-- Table: public.facts
 
--- DROP TABLE spring.facts;
+-- DROP TABLE public.facts;
 
-CREATE TABLE spring.facts
+CREATE TABLE public.facts
 (
     oid integer NOT NULL,
     date date NOT NULL,
@@ -13,15 +13,15 @@ CREATE TABLE spring.facts
     cost integer NOT NULL,
     CONSTRAINT facts_pkey PRIMARY KEY (oid),
     CONSTRAINT facts_book_fkey FOREIGN KEY (book)
-        REFERENCES spring.book (id) MATCH SIMPLE
+        REFERENCES public.book (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
     CONSTRAINT facts_cust_fkey FOREIGN KEY (cust)
-        REFERENCES spring.cust (id) MATCH SIMPLE
+        REFERENCES public.cust (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
     CONSTRAINT facts_retailer_fkey FOREIGN KEY (retailer)
-        REFERENCES spring.shop (id) MATCH SIMPLE
+        REFERENCES public.shop (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 )
@@ -30,5 +30,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE spring.facts
+ALTER TABLE public.facts
     OWNER to postgres;

@@ -6,23 +6,18 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
+@NoArgsConstructor
 public class Cust {
 
-  @Id @GeneratedValue int id;
+  @Id @GeneratedValue private int id;
 
-  @NotEmpty @Size(max = 30, min = 2) String lname;
+  @NotEmpty @Size(max = 30, min = 2) private String lname;
 
-  @Size(max = 50) String district;
+  @Size(max = 50) private String district;
 
-  int discount;
-
-  public Cust(@NotEmpty @Size(max = 30, min = 2) String lname,
-              @Size(max = 50) String district, int discount) {
-    this.lname = lname;
-    this.district = district;
-    this.discount = discount;
-  }
+  private int discount;
 }

@@ -1,10 +1,12 @@
 package com.github.drsgdev.repository;
 
-import com.github.drsgdev.model.Shop;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
 
-public interface ShopRepository extends CrudRepository<Shop, Integer> {
+import com.github.drsgdev.model.Shop;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ShopRepository extends JpaRepository<Shop, Integer> {
 
   List<Shop> findAll();
 }

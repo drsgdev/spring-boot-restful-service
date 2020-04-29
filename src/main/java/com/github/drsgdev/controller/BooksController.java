@@ -1,9 +1,11 @@
 package com.github.drsgdev.controller;
 
-import com.github.drsgdev.model.Book;
-import com.github.drsgdev.repository.BookRepository;
 import java.util.List;
 import java.util.Optional;
+
+import com.github.drsgdev.model.Book;
+import com.github.drsgdev.repository.BookRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,10 +41,12 @@ public class BooksController {
     }
   }
 
-  @PostMapping("/add/{book.title}")
+  @PostMapping("/add")
   @ResponseStatus(HttpStatus.CREATED)
-  public void addBook(@RequestBody Book book) {
+  public ResponseEntity<String> addBook(@RequestBody Book book) {
     bookRepository.save(book);
+
+    return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
   @DeleteMapping("/delete/{id}")

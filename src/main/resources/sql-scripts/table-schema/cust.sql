@@ -1,8 +1,8 @@
--- Table: spring.cust
+-- Table: public.cust
 
--- DROP TABLE spring.cust;
+-- DROP TABLE public.cust;
 
-CREATE TABLE spring.cust
+CREATE TABLE public.cust
 (
     id integer NOT NULL,
     lname character varying(30) COLLATE pg_catalog."default" NOT NULL,
@@ -15,5 +15,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE spring.cust
+ALTER TABLE public.cust
     OWNER to postgres;
