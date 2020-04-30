@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/books")
 public class BooksController {
 
-  @Autowired private BookRepository bookRepository;
+  @Autowired
+  private BookRepository bookRepository;
 
   @GetMapping("/all")
   public ResponseEntity<List<Book>> findAll() {
@@ -62,8 +63,7 @@ public class BooksController {
   }
 
   @PutMapping("/replace/{id}")
-  public ResponseEntity<Book> replaceBook(@RequestParam int id,
-                                          @RequestBody Book book) {
+  public ResponseEntity<Book> replaceBook(@RequestParam int id, @RequestBody Book book) {
     if (bookRepository.existsById(id)) {
       Book replacedBook = bookRepository.findById(id).get();
 

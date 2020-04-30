@@ -13,11 +13,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cust {
 
-  @Id @GeneratedValue private int id;
+  @Id
+  @GeneratedValue
+  private int id;
 
-  @NotEmpty @Size(max = 30, min = 2) private String lname;
+  @NotEmpty
+  @Size(max = 30, min = 2)
+  private String lname;
 
-  @Size(max = 50) private String district;
+  @Size(max = 50)
+  private String district;
 
   private int discount;
 }
