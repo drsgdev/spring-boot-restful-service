@@ -50,13 +50,13 @@ public class BooksController {
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
-  @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/delete")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteBookById(@RequestParam int id) {
     bookRepository.deleteById(id);
   }
 
-  @DeleteMapping("/delete")
+  @DeleteMapping("/delete/json")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteBook(@RequestBody Book book) {
     bookRepository.delete(book);
