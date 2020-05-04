@@ -3,6 +3,7 @@ package com.github.drsgdev.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +22,8 @@ import lombok.NoArgsConstructor;
 public class Book {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GraphQLQuery(name = "id")
   private int id;
 
   @NotEmpty

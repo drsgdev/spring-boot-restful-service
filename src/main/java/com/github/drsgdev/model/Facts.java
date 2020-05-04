@@ -3,6 +3,7 @@ package com.github.drsgdev.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Positive;
 
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Facts {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int oid;
 
   @DateTimeFormat

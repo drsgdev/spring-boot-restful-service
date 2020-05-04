@@ -1,0 +1,27 @@
+[
+	{
+		"lname": "Иванов",
+		"district": "Нижегородский",
+		"discount": 10
+	},
+	{
+		"lname": "Петров",
+		"district": "Нижегородский",
+		"discount": 0
+	},
+	{
+		"lname": "Сидоров",
+		"district": "Сормовский",
+		"discount": 5
+	},
+	{
+		"lname": "Ульянов",
+		"district": "Советский",
+		"discount": 40
+	},
+	{
+		"lname": "Пушкин",
+		"district": "Советский",
+		"discount": 90
+	}
+]

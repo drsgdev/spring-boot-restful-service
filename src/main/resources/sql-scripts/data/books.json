@@ -1,0 +1,38 @@
+[
+	{
+		"title": "Java 8 Dev",
+		"cost": 1000,
+		"warehouse": "Нижегородский",
+		"amnt": 100
+	},
+	{
+		"title": "Java 9 Dev",
+		"cost": 1500,
+		"warehouse": "Нижегородский",
+		"amnt": 65
+	},
+	{
+		"title": "A Million Random Digits",
+		"cost": 2340,
+		"warehouse": "Сормовский",
+		"amnt": 12
+	},
+	{
+		"title": "Gone with the Wind",
+		"cost": 4000,
+		"warehouse": "Сормовский",
+		"amnt": 55
+	},
+	{
+		"title": "Pride and Prejudice",
+		"cost": 1000,
+		"warehouse": "Советский",
+		"amnt": 80
+	},
+	{
+		"title": "Wuthering Heights",
+		"cost": 1250,
+		"warehouse": "Советский",
+		"amnt": 86
+	}
+]
