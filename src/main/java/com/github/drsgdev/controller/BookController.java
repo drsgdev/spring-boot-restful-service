@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -41,9 +40,15 @@ public class BookController {
   }
 
   @PostMapping("/add")
-  @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<String> addBook(@RequestBody Book book) {
     bookService.save(book);
+
+    return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
+
+  @PostMapping("/add/list")
+  public ResponseEntity<String> addAllBooks(@RequestBody List<Book> bookList) {
+    bookService.saveAll(bookList);
 
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }

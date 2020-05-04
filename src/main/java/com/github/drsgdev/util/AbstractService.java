@@ -18,16 +18,20 @@ public class AbstractService<T> {
     return repository.findById(id);
   }
 
-  public T save(T book) {
-    return repository.save(book);
+  public T save(T entity) {
+    return repository.save(entity);
   }
 
-  public Optional<T> delete(T book) {
+  public List<T> saveAll(List<T> list) {
+    return repository.saveAll(list);
+  }
 
-    Optional<T> bookToDelete = repository.findOne(Example.of(book));
+  public Optional<T> delete(T entity) {
+
+    Optional<T> bookToDelete = repository.findOne(Example.of(entity));
 
     if (bookToDelete.isPresent()) {
-      repository.delete(book);
+      repository.delete(entity);
     }
 
     return bookToDelete;
@@ -43,11 +47,11 @@ public class AbstractService<T> {
     return bookToDelete;
   }
 
-  public Optional<T> replace(int id, T book) {
+  public Optional<T> replace(int id, T entity) {
     Optional<T> bookToReplace = repository.findById(id);
 
     if (bookToReplace.isPresent()) {
-      repository.save(book);
+      repository.save(entity);
     }
 
     return bookToReplace;
