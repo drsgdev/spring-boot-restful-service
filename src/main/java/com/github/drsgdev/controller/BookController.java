@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Book;
-import com.github.drsgdev.repository.BookRepository;
+import com.github.drsgdev.service.BookService;
+import com.github.drsgdev.util.ResponseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,58 +22,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/books")
-public class BooksController {
+public class BookController {
 
   @Autowired
-  private BookRepository bookRepository;
+  private BookService bookService;
 
   @GetMapping("/all")
   public ResponseEntity<List<Book>> findAll() {
-    return ResponseEntity.ok(bookRepository.findAll());
+    return ResponseEntity.ok(bookService.findAll());
   }
 
   @GetMapping("/find")
   public ResponseEntity<Book> findById(@RequestParam int id) {
-    Optional<Book> book = bookRepository.findById(id);
+    Optional<Book> book = bookService.findById(id);
 
-    if (book.isPresent()) {
-      return ResponseEntity.ok(book.get());
-    } else {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    return ResponseService.res(book);
   }
 
   @PostMapping("/add")
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<String> addBook(@RequestBody Book book) {
-    bookRepository.save(book);
+    bookService.save(book);
 
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
   @DeleteMapping("/delete")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteBookById(@RequestParam int id) {
-    bookRepository.deleteById(id);
+  public ResponseEntity<Book> deleteById(@RequestParam int id) {
+    Optional<Book> deletedBook = bookService.deleteById(id);
+
+    return ResponseService.res(deletedBook);
   }
 
   @DeleteMapping("/delete/json")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteBook(@RequestBody Book book) {
-    bookRepository.delete(book);
+  public ResponseEntity<Book> delete(@RequestBody Book book) {
+    Optional<Book> deletedBook = bookService.delete(book);
+
+    return ResponseService.res(deletedBook);
   }
 
-  @PutMapping("/replace/{id}")
+  @PutMapping("/replace")
   public ResponseEntity<Book> replaceBook(@RequestParam int id, @RequestBody Book book) {
-    if (bookRepository.existsById(id)) {
-      Book replacedBook = bookRepository.findById(id).get();
+    Optional<Book> replacedBook = bookService.replace(id, book);
 
-      bookRepository.deleteById(id);
-      bookRepository.save(book);
-
-      return ResponseEntity.ok(replacedBook);
-    } else {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    return ResponseService.res(replacedBook);
   }
 }

@@ -1,5 +1,6 @@
 package com.github.drsgdev.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,17 +21,24 @@ public class Facts {
   private int oid;
 
   @DateTimeFormat
+  @Column
   private String date;
 
   @Positive
+  @Column
   private int retailer;
 
   @Positive
+  @Column
   private int cust;
 
+  @Column
   int book;
+
+  @Column
   int amnt;
 
   @Positive
+  @Column
   private int cost;
 }
