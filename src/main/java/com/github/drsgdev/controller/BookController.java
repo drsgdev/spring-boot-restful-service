@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,5 +67,10 @@ public class BookController {
     Optional<Book> replacedBook = bookService.replace(id, book);
 
     return ResponseService.res(replacedBook);
+  }
+
+  @PatchMapping("/modify")
+  public ResponseEntity<Book> modifyBook(@RequestParam int id, @RequestBody Book book) {
+    return replaceBook(id, book);
   }
 }
