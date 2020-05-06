@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Shop;
+import com.github.drsgdev.repository.ShopRepository.Name;
 import com.github.drsgdev.service.ShopService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -77,5 +78,12 @@ public class ShopController {
   @PatchMapping("/modify")
   public ResponseEntity<Shop> modifyShop(@RequestParam int id, @RequestBody Shop Shop) {
     return replaceShop(id, Shop);
+  }
+
+  @GetMapping("/find/names")
+  public ResponseEntity<List<Name>> findNamesByDistrict(@RequestParam String district) {
+    List<Name> res = shopService.getNamesByDistrict(district);
+
+    return ResponseService.res(res);
   }
 }

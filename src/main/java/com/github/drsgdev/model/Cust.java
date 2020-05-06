@@ -8,10 +8,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@DynamicUpdate
 @Data
 @NoArgsConstructor
 public class Cust {

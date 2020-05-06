@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Cust;
 import com.github.drsgdev.repository.CustRepository;
+import com.github.drsgdev.repository.CustRepository.District;
+import com.github.drsgdev.repository.CustRepository.NameAndDisc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -61,5 +63,13 @@ public class CustService {
     }
 
     return bookToReplace;
+  }
+
+  public List<District> findDistricts() {
+    return custRepository.findDistinctDistrictsBy();
+  }
+
+  public List<NameAndDisc> findInfoByDistrict(String district) {
+    return custRepository.findDistinctByDistrict(district);
   }
 }

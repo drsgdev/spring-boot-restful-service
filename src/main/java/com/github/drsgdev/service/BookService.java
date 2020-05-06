@@ -64,18 +64,11 @@ public class BookService {
     return bookToReplace;
   }
 
-  public List<TitleAndCost> findDistinctValues(String... fields) {
-    return bookRepository.findDistinctBy();
+  public List<TitleAndCost> findDistinctTitleAndCost() {
+    return bookRepository.findDistinctTitleAnsCostBy();
   }
 
-  public List<String> distinct(String... fields) {
-    StringBuilder query = new StringBuilder();
-    for (String field : fields) {
-      query.append("b." + field + ", ");
-    }
-
-    query.replace(query.length() - 2, query.length(), " ");
-
-    return bookRepository.findDistinct(query.toString());
+  public List<TitleAndCost> findTitleAndCostByConstraints(String title, int cost) {
+    return bookRepository.findAllByTitleContainingOrCostIsGreaterThanEqual(title, cost);
   }
 }

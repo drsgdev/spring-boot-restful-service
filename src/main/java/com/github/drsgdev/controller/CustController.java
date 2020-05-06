@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Cust;
+import com.github.drsgdev.repository.CustRepository.District;
+import com.github.drsgdev.repository.CustRepository.NameAndDisc;
 import com.github.drsgdev.service.CustService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -77,5 +79,19 @@ public class CustController {
   @PatchMapping("/modify")
   public ResponseEntity<Cust> modifyCust(@RequestParam int id, @RequestBody Cust Cust) {
     return replaceCust(id, Cust);
+  }
+
+  @GetMapping("/find/districts")
+  public ResponseEntity<List<District>> getDistricts() {
+    List<District> res = custService.findDistricts();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/nameanddisc")
+  public ResponseEntity<List<NameAndDisc>> getNameAndDisc(@RequestParam String district) {
+    List<NameAndDisc> res = custService.findInfoByDistrict(district);
+
+    return ResponseService.res(res);
   }
 }

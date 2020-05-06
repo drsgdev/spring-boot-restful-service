@@ -5,7 +5,7 @@
 CREATE TABLE public.facts
 (
     oid integer NOT NULL,
-    date date NOT NULL,
+    date timestamp NOT NULL,
     retailer integer NOT NULL,
     cust integer NOT NULL,
     book integer,

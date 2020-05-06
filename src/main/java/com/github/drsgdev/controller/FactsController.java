@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Facts;
+import com.github.drsgdev.repository.FactsRepository.CustAndBook;
+import com.github.drsgdev.repository.FactsRepository.CustAndShop;
 import com.github.drsgdev.service.FactsService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -77,5 +79,26 @@ public class FactsController {
   @PatchMapping("/modify")
   public ResponseEntity<Facts> modifyFacts(@RequestParam int id, @RequestBody Facts Facts) {
     return replaceFacts(id, Facts);
+  }
+
+  @GetMapping("/find/month")
+  public ResponseEntity<List<String>> findMonth() {
+    List<String> res = factsService.findFactsMonth();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/custandshop")
+  public ResponseEntity<List<CustAndShop>> findCustAndShop() {
+    List<CustAndShop> res = factsService.findCustAndShop();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/custandbook")
+  public ResponseEntity<List<CustAndBook>> findCustAndBook() {
+    List<CustAndBook> res = factsService.findCustAndBook();
+
+    return ResponseService.res(res);
   }
 }

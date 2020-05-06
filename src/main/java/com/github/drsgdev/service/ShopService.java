@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Shop;
 import com.github.drsgdev.repository.ShopRepository;
+import com.github.drsgdev.repository.ShopRepository.Name;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -61,5 +62,9 @@ public class ShopService {
     }
 
     return bookToReplace;
+  }
+
+  public List<Name> getNamesByDistrict(String district) {
+    return shopRepository.findDistinctNamesByDistrict(district);
   }
 }

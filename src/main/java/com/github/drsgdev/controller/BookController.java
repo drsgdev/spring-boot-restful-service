@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -80,14 +81,20 @@ public class BookController {
     return replaceBook(id, book);
   }
 
-  @GetMapping("/find/distinct")
-  public ResponseEntity<List<String>> findDistinct(@RequestParam String... fields) {
-    List<String> res = bookService.distinct(fields);
+  @GetMapping("/find/titleandcost")
+  public ResponseEntity<List<TitleAndCost>> findTitleAndCost() {
+    List<TitleAndCost> res = bookService.findDistinctTitleAndCost();
 
-    if (res.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    } else {
-      return ResponseEntity.ok(res);
-    }
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/titleandcost/{title}/{cost}")
+  public ResponseEntity<List<TitleAndCost>> findTitleAndCostByConstraints(
+                                              @PathVariable("title") String title,
+                                              @PathVariable("cost") int cost) {
+
+    List<TitleAndCost> res = bookService.findTitleAndCostByConstraints(title, cost);
+
+    return ResponseService.res(res);
   }
 }

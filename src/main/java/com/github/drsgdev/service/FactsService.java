@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Facts;
 import com.github.drsgdev.repository.FactsRepository;
+import com.github.drsgdev.repository.FactsRepository.CustAndBook;
+import com.github.drsgdev.repository.FactsRepository.CustAndShop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -61,5 +63,17 @@ public class FactsService {
     }
 
     return bookToReplace;
+  }
+
+  public List<String> findFactsMonth() {
+    return factsRepository.findMonth();
+  }
+
+  public List<CustAndShop> findCustAndShop() {
+    return factsRepository.findCustAndShop();
+  }
+
+  public List<CustAndBook> findCustAndBook() {
+    return factsRepository.findCustAndBook();
   }
 }
