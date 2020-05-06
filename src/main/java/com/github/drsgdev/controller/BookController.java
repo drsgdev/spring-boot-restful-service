@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Book;
+import com.github.drsgdev.repository.BookRepository.TitleAndCost;
 import com.github.drsgdev.service.BookService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -77,5 +78,16 @@ public class BookController {
   @PatchMapping("/modify")
   public ResponseEntity<Book> modifyBook(@RequestParam int id, @RequestBody Book book) {
     return replaceBook(id, book);
+  }
+
+  @GetMapping("/find/distinct")
+  public ResponseEntity<List<String>> findDistinct(@RequestParam String... fields) {
+    List<String> res = bookService.distinct(fields);
+
+    if (res.isEmpty()) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    } else {
+      return ResponseEntity.ok(res);
+    }
   }
 }

@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,7 +22,6 @@ public class Book {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @GraphQLQuery(name = "id")
   private int id;
 
   @NotEmpty

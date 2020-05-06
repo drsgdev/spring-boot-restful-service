@@ -5,27 +5,22 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Book;
 import com.github.drsgdev.repository.BookRepository;
+import com.github.drsgdev.repository.BookRepository.TitleAndCost;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import io.leangen.graphql.annotations.GraphQLQuery;
-import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
-
 @Service
-@GraphQLApi
 public class BookService {
 
   @Autowired
   private BookRepository bookRepository;
 
-  @GraphQLQuery(name = "books")
   public List<Book> findAll() {
     return bookRepository.findAll();
   }
 
-  @GraphQLQuery(name = "book")
   public Optional<Book> findById(int id) {
     return bookRepository.findById(id);
   }
@@ -67,5 +62,20 @@ public class BookService {
     }
 
     return bookToReplace;
+  }
+
+  public List<TitleAndCost> findDistinctValues(String... fields) {
+    return bookRepository.findDistinctBy();
+  }
+
+  public List<String> distinct(String... fields) {
+    StringBuilder query = new StringBuilder();
+    for (String field : fields) {
+      query.append("b." + field + ", ");
+    }
+
+    query.replace(query.length() - 2, query.length(), " ");
+
+    return bookRepository.findDistinct(query.toString());
   }
 }

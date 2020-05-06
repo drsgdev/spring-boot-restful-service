@@ -10,22 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import io.leangen.graphql.annotations.GraphQLQuery;
-import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
-
 @Service
-@GraphQLApi
 public class CustService {
 
   @Autowired
   private CustRepository custRepository;
 
-  @GraphQLQuery(name = "customers")
   public List<Cust> findAll() {
     return custRepository.findAll();
   }
 
-  @GraphQLQuery(name = "customer")
   public Optional<Cust> findById(int id) {
     return custRepository.findById(id);
   }
