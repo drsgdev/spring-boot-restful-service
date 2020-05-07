@@ -3,14 +3,14 @@ package com.github.drsgdev.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.github.drsgdev.model.Book;
 import com.github.drsgdev.model.Facts;
 import com.github.drsgdev.repository.FactsRepository;
-import com.github.drsgdev.repository.FactsRepository.BookOnly;
 import com.github.drsgdev.repository.FactsRepository.CustAndBook;
-import com.github.drsgdev.repository.FactsRepository.CustAndShop;
-import com.github.drsgdev.repository.FactsRepository.ShopNameOnly;
 import com.github.drsgdev.repository.FactsRepository.CustAndDate;
 import com.github.drsgdev.repository.FactsRepository.CustAndDistrict;
+import com.github.drsgdev.repository.FactsRepository.CustAndShop;
+import com.github.drsgdev.repository.FactsRepository.ShopNameOnly;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -101,7 +101,7 @@ public class FactsService {
     return factsRepository.findShop(lo, hi, district);
   }
 
-  public List<BookOnly> findBook(int amnt) {
+  public List<Book> findBook(int amnt) {
     return factsRepository.findBook(amnt);
   }
 }

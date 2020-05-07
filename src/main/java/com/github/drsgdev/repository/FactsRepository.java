@@ -3,6 +3,7 @@ package com.github.drsgdev.repository;
 import java.util.Date;
 import java.util.List;
 
+import com.github.drsgdev.model.Book;
 import com.github.drsgdev.model.Facts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -46,11 +47,6 @@ public interface FactsRepository extends JpaRepository<Facts, Integer> {
 
   public interface CustAndDistrict extends LastNameOnly, DateOnly {
     String getDistrict();
-  }
-
-  public interface BookOnly extends BookTitleOnly, BookAmntOnly {
-    String getWarehouse();
-    int getCost();
   }
 
   @Query(nativeQuery = false, value = "SELECT to_char(f.date, 'MON') FROM Facts f")
@@ -100,5 +96,5 @@ public interface FactsRepository extends JpaRepository<Facts, Integer> {
                  "JOIN Shop s ON s.id = f.retailer " +
                  "WHERE b.warehouse = s.district " +
                  "AND b.amnt >= :amnt")
-  public List<BookOnly> findBook(@Param("amnt") int amnt);
+  public List<Book> findBook(@Param("amnt") int amnt);
 }

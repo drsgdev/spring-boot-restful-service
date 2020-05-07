@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.SwaggerDefinition;
-
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -31,16 +29,33 @@ public class BookController {
   @Autowired
   private BookService bookService;
 
-  @GetMapping("/all")
-  public ResponseEntity<List<Book>> findAll() {
-    return ResponseEntity.ok(bookService.findAll());
-  }
-
   @GetMapping("/find")
   public ResponseEntity<Book> findById(@RequestParam int id) {
     Optional<Book> book = bookService.findById(id);
 
     return ResponseService.res(book);
+  }
+
+  @GetMapping("/find/all")
+  public ResponseEntity<List<Book>> findAll() {
+    return ResponseEntity.ok(bookService.findAll());
+  }
+
+  @GetMapping("/find/title/cost")
+  public ResponseEntity<List<TitleAndCost>> findTitleAndCost() {
+    List<TitleAndCost> res = bookService.findDistinctTitleAndCost();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/{title}/{cost}")
+  public ResponseEntity<List<TitleAndCost>> findTitleAndCostByConstraints(
+                                              @PathVariable("title") String contains,
+                                              @PathVariable("cost") int cost) {
+
+    List<TitleAndCost> res = bookService.findTitleAndCostByConstraints(contains, cost);
+
+    return ResponseService.res(res);
   }
 
   @PostMapping("/add")
@@ -81,22 +96,5 @@ public class BookController {
   @PatchMapping("/modify")
   public ResponseEntity<Book> modifyBook(@RequestParam int id, @RequestBody Book book) {
     return replaceBook(id, book);
-  }
-
-  @GetMapping("/find/title/cost")
-  public ResponseEntity<List<TitleAndCost>> findTitleAndCost() {
-    List<TitleAndCost> res = bookService.findDistinctTitleAndCost();
-
-    return ResponseService.res(res);
-  }
-
-  @GetMapping("/find/{title}/{cost}")
-  public ResponseEntity<List<TitleAndCost>> findTitleAndCostByConstraints(
-                                              @PathVariable("title") String title,
-                                              @PathVariable("cost") int cost) {
-
-    List<TitleAndCost> res = bookService.findTitleAndCostByConstraints(title, cost);
-
-    return ResponseService.res(res);
   }
 }

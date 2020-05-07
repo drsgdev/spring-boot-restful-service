@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Integer> {
 
-  public interface Name {
+  public interface ShopNameOnly {
     String getName();
   }
 
-  public List<Name> findDistinctNamesByDistrict(String district);
+  public List<ShopNameOnly> findDistinctNamesByDistrict(String district);
 }

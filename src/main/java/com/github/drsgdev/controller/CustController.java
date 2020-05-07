@@ -29,16 +29,30 @@ public class CustController {
   @Autowired
   private CustService custService;
 
-  @GetMapping("/all")
-  public ResponseEntity<List<Cust>> findAll() {
-    return ResponseEntity.ok(custService.findAll());
-  }
-
   @GetMapping("/find")
   public ResponseEntity<Cust> findById(@RequestParam int id) {
     Optional<Cust> Cust = custService.findById(id);
 
     return ResponseService.res(Cust);
+  }
+
+  @GetMapping("/find/all")
+  public ResponseEntity<List<Cust>> findAll() {
+    return ResponseEntity.ok(custService.findAll());
+  }
+
+  @GetMapping("/find/districts")
+  public ResponseEntity<List<District>> getDistricts() {
+    List<District> res = custService.findDistricts();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/name/discount")
+  public ResponseEntity<List<NameAndDiscount>> getNameAndDisc(@RequestParam String district) {
+    List<NameAndDiscount> res = custService.findInfoByDistrict(district);
+
+    return ResponseService.res(res);
   }
 
   @PostMapping("/add")
@@ -79,19 +93,5 @@ public class CustController {
   @PatchMapping("/modify")
   public ResponseEntity<Cust> modifyCust(@RequestParam int id, @RequestBody Cust Cust) {
     return replaceCust(id, Cust);
-  }
-
-  @GetMapping("/find/districts")
-  public ResponseEntity<List<District>> getDistricts() {
-    List<District> res = custService.findDistricts();
-
-    return ResponseService.res(res);
-  }
-
-  @GetMapping("/find/name/discount")
-  public ResponseEntity<List<NameAndDiscount>> getNameAndDisc(@RequestParam String district) {
-    List<NameAndDiscount> res = custService.findInfoByDistrict(district);
-
-    return ResponseService.res(res);
   }
 }

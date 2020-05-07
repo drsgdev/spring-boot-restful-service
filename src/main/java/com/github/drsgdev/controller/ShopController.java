@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Shop;
-import com.github.drsgdev.repository.ShopRepository.Name;
+import com.github.drsgdev.repository.ShopRepository.ShopNameOnly;
 import com.github.drsgdev.service.ShopService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -28,16 +28,23 @@ public class ShopController {
   @Autowired
   private ShopService shopService;
 
-  @GetMapping("/all")
-  public ResponseEntity<List<Shop>> findAll() {
-    return ResponseEntity.ok(shopService.findAll());
-  }
-
   @GetMapping("/find")
   public ResponseEntity<Shop> findById(@RequestParam int id) {
     Optional<Shop> Shop = shopService.findById(id);
 
     return ResponseService.res(Shop);
+  }
+
+  @GetMapping("/find/all")
+  public ResponseEntity<List<Shop>> findAll() {
+    return ResponseEntity.ok(shopService.findAll());
+  }
+
+  @GetMapping("/find/names")
+  public ResponseEntity<List<ShopNameOnly>> findNamesByDistrict(@RequestParam String district) {
+    List<ShopNameOnly> res = shopService.findNamesByDistrict(district);
+
+    return ResponseService.res(res);
   }
 
   @PostMapping("/add")
@@ -78,12 +85,5 @@ public class ShopController {
   @PatchMapping("/modify")
   public ResponseEntity<Shop> modifyShop(@RequestParam int id, @RequestBody Shop Shop) {
     return replaceShop(id, Shop);
-  }
-
-  @GetMapping("/find/names")
-  public ResponseEntity<List<Name>> findNamesByDistrict(@RequestParam String district) {
-    List<Name> res = shopService.findNamesByDistrict(district);
-
-    return ResponseService.res(res);
   }
 }
