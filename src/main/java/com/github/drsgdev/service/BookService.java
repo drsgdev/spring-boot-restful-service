@@ -65,7 +65,7 @@ public class BookService {
   }
 
   public List<TitleAndCost> findDistinctTitleAndCost() {
-    return bookRepository.findDistinctTitleAnsCostBy();
+    return bookRepository.findDistinctTitleAndCostBy();
   }
 
   public List<TitleAndCost> findTitleAndCostByConstraints(String title, int cost) {

@@ -5,8 +5,12 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Facts;
 import com.github.drsgdev.repository.FactsRepository;
+import com.github.drsgdev.repository.FactsRepository.BookOnly;
 import com.github.drsgdev.repository.FactsRepository.CustAndBook;
 import com.github.drsgdev.repository.FactsRepository.CustAndShop;
+import com.github.drsgdev.repository.FactsRepository.ShopNameOnly;
+import com.github.drsgdev.repository.FactsRepository.CustAndDate;
+import com.github.drsgdev.repository.FactsRepository.CustAndDistrict;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -75,5 +79,29 @@ public class FactsService {
 
   public List<CustAndBook> findCustAndBook() {
     return factsRepository.findCustAndBook();
+  }
+
+  public List<CustAndDate> findCustOnly(int cost) {
+    if (cost <= 0) {
+      cost = 1000;
+    }
+
+    return factsRepository.findCustAndDate(cost);
+  }
+
+  public List<CustAndDistrict> findCustAndDistrict(int month) {
+    if (month < 1 || month > 12) {
+      month = 1;
+    }
+
+    return factsRepository.findCustAndDistrict(month);
+  }
+
+  public List<ShopNameOnly> findShop(int lo, int hi, String district) {
+    return factsRepository.findShop(lo, hi, district);
+  }
+
+  public List<BookOnly> findBook(int amnt) {
+    return factsRepository.findBook(amnt);
   }
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.github.drsgdev.model.Cust;
 import com.github.drsgdev.repository.CustRepository.District;
-import com.github.drsgdev.repository.CustRepository.NameAndDisc;
+import com.github.drsgdev.repository.CustRepository.NameAndDiscount;
 import com.github.drsgdev.service.CustService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -88,9 +88,9 @@ public class CustController {
     return ResponseService.res(res);
   }
 
-  @GetMapping("/find/nameanddisc")
-  public ResponseEntity<List<NameAndDisc>> getNameAndDisc(@RequestParam String district) {
-    List<NameAndDisc> res = custService.findInfoByDistrict(district);
+  @GetMapping("/find/name/discount")
+  public ResponseEntity<List<NameAndDiscount>> getNameAndDisc(@RequestParam String district) {
+    List<NameAndDiscount> res = custService.findInfoByDistrict(district);
 
     return ResponseService.res(res);
   }

@@ -15,6 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     String getCost();
   }
 
-  public List<TitleAndCost> findDistinctTitleAnsCostBy();
+  public List<TitleAndCost> findDistinctTitleAndCostBy();
   public List<TitleAndCost> findAllByTitleContainingOrCostIsGreaterThanEqual(String containing, int bound);
 }

@@ -82,7 +82,7 @@ public class ShopController {
 
   @GetMapping("/find/names")
   public ResponseEntity<List<Name>> findNamesByDistrict(@RequestParam String district) {
-    List<Name> res = shopService.getNamesByDistrict(district);
+    List<Name> res = shopService.findNamesByDistrict(district);
 
     return ResponseService.res(res);
   }

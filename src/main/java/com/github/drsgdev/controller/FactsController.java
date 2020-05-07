@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import com.github.drsgdev.model.Facts;
+import com.github.drsgdev.repository.FactsRepository.BookOnly;
 import com.github.drsgdev.repository.FactsRepository.CustAndBook;
 import com.github.drsgdev.repository.FactsRepository.CustAndShop;
+import com.github.drsgdev.repository.FactsRepository.ShopNameOnly;
+import com.github.drsgdev.repository.FactsRepository.CustAndDate;
+import com.github.drsgdev.repository.FactsRepository.CustAndDistrict;
 import com.github.drsgdev.service.FactsService;
 import com.github.drsgdev.util.ResponseService;
 
@@ -88,16 +92,47 @@ public class FactsController {
     return ResponseService.res(res);
   }
 
-  @GetMapping("/find/custandshop")
+  @GetMapping("/find/cust/shop")
   public ResponseEntity<List<CustAndShop>> findCustAndShop() {
     List<CustAndShop> res = factsService.findCustAndShop();
 
     return ResponseService.res(res);
   }
 
-  @GetMapping("/find/custandbook")
+  @GetMapping("/find/cust/book")
   public ResponseEntity<List<CustAndBook>> findCustAndBook() {
     List<CustAndBook> res = factsService.findCustAndBook();
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/cust")
+  public ResponseEntity<List<CustAndDate>> findCustOnly(@RequestParam("cost") int cost) {
+    List<CustAndDate> res = factsService.findCustOnly(cost);
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/cust/district")
+  public ResponseEntity<List<CustAndDistrict>> findCustAndDistrict(@RequestParam("month") int month) {
+    List<CustAndDistrict> res = factsService.findCustAndDistrict(month);
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/shop")
+  public ResponseEntity<List<ShopNameOnly>> findCustAndDistrict(@RequestParam("low") int lo,
+      @RequestParam("high") int hi, @RequestParam("district") String district) {
+
+    List<ShopNameOnly> res = factsService.findShop(lo, hi, district);
+
+    return ResponseService.res(res);
+  }
+
+  @GetMapping("/find/book")
+  public ResponseEntity<List<BookOnly>> findBook(@RequestParam("amnt") int amnt) {
+
+    List<BookOnly> res = factsService.findBook(amnt);
 
     return ResponseService.res(res);
   }

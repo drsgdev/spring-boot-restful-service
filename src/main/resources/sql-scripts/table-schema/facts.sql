@@ -4,7 +4,7 @@
 
 CREATE TABLE public.facts
 (
-    oid integer NOT NULL,
+    id integer NOT NULL,
     date timestamp NOT NULL,
     retailer integer NOT NULL,
     cust integer NOT NULL,

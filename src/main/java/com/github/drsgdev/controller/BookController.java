@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.SwaggerDefinition;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -81,14 +83,14 @@ public class BookController {
     return replaceBook(id, book);
   }
 
-  @GetMapping("/find/titleandcost")
+  @GetMapping("/find/title/cost")
   public ResponseEntity<List<TitleAndCost>> findTitleAndCost() {
     List<TitleAndCost> res = bookService.findDistinctTitleAndCost();
 
     return ResponseService.res(res);
   }
 
-  @GetMapping("/find/titleandcost/{title}/{cost}")
+  @GetMapping("/find/{title}/{cost}")
   public ResponseEntity<List<TitleAndCost>> findTitleAndCostByConstraints(
                                               @PathVariable("title") String title,
                                               @PathVariable("cost") int cost) {

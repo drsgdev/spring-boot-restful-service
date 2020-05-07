@@ -14,11 +14,11 @@ public interface CustRepository extends JpaRepository<Cust, Integer> {
     String getDistrict();
   }
 
-  public interface NameAndDisc {
+  public interface NameAndDiscount {
     String getlname();
     String getDiscount();
   }
 
   public List<District> findDistinctDistrictsBy();
-  public List<NameAndDisc> findDistinctByDistrict(String district);
+  public List<NameAndDiscount> findDistinctByDistrict(String district);
 }

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
@@ -21,6 +23,7 @@ public class Shop {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonIgnore
   private int id;
 
   @NotEmpty

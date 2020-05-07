@@ -64,7 +64,7 @@ public class ShopService {
     return bookToReplace;
   }
 
-  public List<Name> getNamesByDistrict(String district) {
+  public List<Name> findNamesByDistrict(String district) {
     return shopRepository.findDistinctNamesByDistrict(district);
   }
 }
