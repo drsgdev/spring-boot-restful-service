@@ -95,6 +95,7 @@ public interface FactsRepository extends JpaRepository<Facts, Integer> {
                  "FROM Facts f JOIN Book b ON b.id = f.book " +
                  "JOIN Shop s ON s.id = f.retailer " +
                  "WHERE b.warehouse = s.district " +
-                 "AND b.amnt >= :amnt")
+                 "AND b.amnt >= :amnt " +
+                 "ORDER BY b.cost")
   public List<Book> findBook(@Param("amnt") int amnt);
 }
